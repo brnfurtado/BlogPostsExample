@@ -18,7 +18,7 @@ namespace CodingChallenge.Controllers
 
         [HttpGet]
         [Route("/api/posts")]
-        public async Task<ActionResult<IEnumerable<BlogPost>>> GetAllBlogPosts()
+        public async Task<ActionResult<IEnumerable<GetBlogPostViewModel>>> GetAllBlogPosts()
         {
             var blogPosts = await _blogPostRepository.GetAllBlogPosts();
             return Ok(blogPosts);

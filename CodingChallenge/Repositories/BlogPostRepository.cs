@@ -6,9 +6,15 @@ namespace CodingChallenge.Repositories
     {
         private List<BlogPost> _blogPosts = new List<BlogPost>();
 
-        public Task<IEnumerable<BlogPost>> GetAllBlogPosts()
+        public async Task<IEnumerable<GetBlogPostViewModel>> GetAllBlogPosts()
         {
-            return Task.FromResult<IEnumerable<BlogPost>>(_blogPosts);
+            return _blogPosts.Select(bp => new GetBlogPostViewModel
+            {
+                ID = bp.ID,
+                Title = bp.Title,
+                Content = bp.Content,
+                CommentCount = bp.Comments?.Count ?? 0
+            }).ToList();
         }
 
         public async Task<BlogPost> GetBlogPostByID(Guid id)
